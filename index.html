@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="downloader-box">
+            <h1>Thumbnail Downloader</h1>
+            <input type="text" placeholder="Input YouTube Video URL" onkeyup="show_thumb()">
+            <img src="https://havecamerawilltravel.com/wp-content/uploads/2020/01/youtube-thumbnails-size-header-1-800x450.png" alt="">
+            <div class="how-to">
+                <h3>How to Download?</h3>
+                <p><strong>Windows/Mac/Linux: </strong>Right-click on the image and click the "save image as" option to download the image.</p>
+                <p><strong>Android/iOS Device: </strong>Long press on the image and tap the "save image as" option to download the image.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // https://i.ytimg.com/vi/oLGUkAs82co/hq720.jpg
+        // https://www.youtube.com/watch?v=HGOBQPFzWKo
+        function show_thumb(){
+            var input          = document.querySelector(".downloader-box input");
+            var input_url      = input.value;
+
+            var url_obj        = new URL(input_url);
+            if(url_obj){
+                var video_id   = url_obj.searchParams.get("v");
+                var img_url    = 'https://i.ytimg.com/vi/'+video_id+'/maxresdefault.jpg';
+            
+                if(img_url){
+                    var image  = document.querySelector(".downloader-box img");
+                    image.src  = img_url;
+                }
+            
+                button          = document.querySelector(".downloader-box .button");
+                button.download = img_url;
+            }
+        }
+    </script>
+</body>
+</html>
